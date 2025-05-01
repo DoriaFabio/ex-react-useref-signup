@@ -1,37 +1,22 @@
-# clono la cartella da github
+# Milestone 1: Creare un Form con Campi Controllati
+Crea un form di registrazione con i seguenti campi controllati (gestiti con useState):
 
-npm create vite@latest
+  ✅ Nome completo (input di testo)
 
-alla domanda project-name inserisco . (dot)
+  ✅ Username (input di testo)
 
-npm install
+  ✅ Password (input di tipo password)
 
-# testo
-npm run dev
+  ✅ Specializzazione (select con opzioni: "Full Stack", "Frontend", "Backend")
 
-apro il .gitignore e aggiungo package-lock.json
+  ✅ Anni di esperienza (input di tipo number)
 
-installo gli altri pacchetti che mi servono
+  ✅ Breve descrizione sullo sviluppatore (textarea)
 
-cancello il contenuto di App.jsx e rimuovo gli import che non mi servono
-cancello i file che non mi servono
+Aggiungi una validazione al submit, verificando che:
 
-se voglio importo bootstrap in main.jsx prima del mio css custom 
- import "bootstrap/dist/css/bootstrap.min.css";
+  - Tutti i campi siano compilati
+  - L'input Anni di esperienza sia un numero positivo
+  - La Specializzazione sia selezionata
 
-comincio ad editare App.jsx
-
-
-# add to rules in eslint
-rules: {
-      ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...react.configs["jsx-runtime"].rules,
-      ..reactHooks.configs.recommended.rules,
-      "react/prop-types": 0, 👈
-      "react/jsx-no-target-blank": "off",
-      "react-refresh/only-export-components": [
-        "warn",
-        { allowConstantExport: true },
-      ],
-    },
+Al submit, se il form è valido, stampa in console i dati.
