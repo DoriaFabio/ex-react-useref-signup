@@ -3,11 +3,14 @@ import { useState } from 'react'
 function App() {
 
   const [fullName, setFullName] = useState("Fabio");
-  const [username, setUsername] = useState("pheb");
+  const [username, setUsername] = useState("pheb731");
   const [password, setPassword] = useState("password");
   const [specialization, setSpecialization] = useState("Full-stack");
   const [yearExp, setYearExp] = useState("5");
   const [desc, setDesc] = useState("Ciao, sono Fabio");
+  const letters = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()-_=+[]{}|;:',.<>?/`~£§";
 
   const submit = (e) => {
     e.preventDefault();
@@ -33,8 +36,8 @@ function App() {
   }
 
   return (
-    <div className='flex justify-center items-center min-h-screen'>
-      <form onSubmit={submit} className='grid grid-cols-3 border border-black p-5'>
+    <div className='flex justify-center min-h-screen items-center'>
+      <form onSubmit={submit} className='grid border border-black p-5'>
         <section>
           <h1 className='text-center'>Nome completo</h1>
           <input type="text"
@@ -52,6 +55,9 @@ function App() {
             placeholder='Scrivi...'
             className='p-2 border m-1'
           />
+          <strong style={{ color: (username.length < 6 || symbols.split("").some(char => username.includes(char))) ? "red" : "green" }} className='block text-center text-[12px]'>
+            {(username.length < 6 || symbols.split("").some(char => username.includes(char))) ? "Almeno 6 caratteri alfanumerici" : "Username valido"}
+          </strong>
         </section>
         <section>
           <h1 className='text-center'>Password</h1>
@@ -93,7 +99,7 @@ function App() {
           </textarea>
         </section>
         <button type='submit'
-          className='border-2 p-2 m-2 bg-blue-600 hover:bg-blue-700 text-white border-black'>
+          className='border-2 p-2 m-1 bg-blue-600 hover:bg-blue-700 text-white border-black'>
           Invia
         </button>
       </form>

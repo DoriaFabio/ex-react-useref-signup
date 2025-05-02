@@ -3,6 +3,6 @@ body {
     background-color: rgb(205, 205, 205);
 }
 
-select {
+select, textarea {
     width: -webkit-fill-available;
 }
