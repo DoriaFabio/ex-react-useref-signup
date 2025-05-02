@@ -2,22 +2,34 @@ import { useState } from 'react'
 
 function App() {
 
-  const [completeName, setCompleteName] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [specialization, setSpecialization] = useState("");
-  const [yearExp, setYearExp] = useState("");
-  const [desc, setDesc] = useState("");
+  const [fullName, setFullName] = useState("Fabio");
+  const [username, setUsername] = useState("pheb");
+  const [password, setPassword] = useState("password");
+  const [specialization, setSpecialization] = useState("Full-stack");
+  const [yearExp, setYearExp] = useState("5");
+  const [desc, setDesc] = useState("Ciao, sono Fabio");
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(`Hai fatto il submit con:
-      - Nome completo: ${completeName};
+    if (
+      !fullName.trim() ||
+      !username.trim() ||
+      !password.trim() ||
+      !specialization.trim() ||
+      !yearExp.trim() ||
+      !desc.trim()
+    ) {
+      alert("Errore: Compila tutti i campi");
+      return;
+    } else {
+      console.log(`Hai fatto il submit con:
+      - Nome completo: ${fullName};
       - Username: ${username};
       - Password: ${password};
       - Specializzazione: ${specialization};
       - Anni di esperienza: ${yearExp};
       - Descrizione: ${desc}`);
+    }
   }
 
   return (
@@ -26,10 +38,10 @@ function App() {
         <section>
           <h1 className='text-center'>Nome completo</h1>
           <input type="text"
-            value={completeName}
-            onChange={(e) => setCompleteName(e.target.value)}
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             placeholder='Scrivi...'
-            className='p-2 border m-2'
+            className='p-2 border m-1'
           />
         </section>
         <section>
@@ -38,7 +50,7 @@ function App() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder='Scrivi...'
-            className='p-2 border m-2'
+            className='p-2 border m-1'
           />
         </section>
         <section>
@@ -47,7 +59,7 @@ function App() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Scrivi...'
-            className='p-2 border m-2'
+            className='p-2 border m-1'
           />
         </section>
         <section>
@@ -55,7 +67,7 @@ function App() {
           <select
             value={specialization}
             onChange={(e) => setSpecialization(e.target.value)}
-            className='p-2 border m-2'>
+            className='p-2 border m-1'>
             <option value="Full-stack">Full-stack</option>
             <option value="Front-end">Front-end</option>
             <option value="Back-end">Back-end</option>
@@ -67,19 +79,23 @@ function App() {
             value={yearExp}
             onChange={(e) => setYearExp(e.target.value)}
             placeholder='Scrivi...'
-            className='p-2 border m-2'
+            className='p-2 border m-1'
+            min="0"
           />
         </section>
         <section>
-          <h1>Descrizione sviluppatore</h1>
+          <h1 className='text-center'>Descrizione sviluppatore</h1>
           <textarea
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
-            className='p-2 border m-2'
+            className='p-2 border m-1'
             placeholder='Scrivi...'>
           </textarea>
         </section>
-        <button type='submit' className='border-2 p-2 m-2 bg-blue-600 hover:bg-blue-700 text-white border-black'>Invia</button>
+        <button type='submit'
+          className='border-2 p-2 m-2 bg-blue-600 hover:bg-blue-700 text-white border-black'>
+          Invia
+        </button>
       </form>
     </div>
   )

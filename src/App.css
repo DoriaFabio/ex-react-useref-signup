@@ -1,4 +1,7 @@
 @import "tailwindcss";
+body {
+    background-color: rgb(205, 205, 205);
+}
 
 select {
     width: -webkit-fill-available;
