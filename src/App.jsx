@@ -4,7 +4,7 @@ function App() {
 
   const [fullName, setFullName] = useState("Fabio");
   const [username, setUsername] = useState("pheb731");
-  const [password, setPassword] = useState("password");
+  const [password, setPassword] = useState("password3$");
   const [specialization, setSpecialization] = useState("Full-stack");
   const [yearExp, setYearExp] = useState("5");
   const [desc, setDesc] = useState("Ciao, sono Fabio");
@@ -67,6 +67,17 @@ function App() {
             placeholder='Scrivi...'
             className='p-2 border m-1'
           />
+          <strong style={{
+            color: (password.length < 8 ||
+              !symbols.split("").some(char => password.includes(char)) ||
+              !letters.split("").some(char => password.includes(char)) ||
+              !numbers.split("").some(char => password.includes(char))) ? "red" : "green"
+          }} className='block text-center text-[12px]'>
+            {(password.length < 8) ? "Minimo 8 caratteri" :
+              (!symbols.split("").some(char => password.includes(char))) ? "Inserire almeno un simbolo" :
+                (!numbers.split("").some(char => password.includes(char))) ? "Inserire almeno un numero" :
+                  (!letters.split("").some(char => password.includes(char))) ? "Inserire almeno una lettera" : "Password valida"}
+          </strong>
         </section>
         <section>
           <h1 className='text-center'>Specializzazione</h1>
@@ -97,9 +108,12 @@ function App() {
             className='p-2 border m-1'
             placeholder='Scrivi...'>
           </textarea>
+          <strong style={{ color: (desc.length > 100 && desc.length < 1000) ? "green" : "red" }} className='block text-center text-[12px]'>
+            {((desc.length > 100 && desc.length < 1000)) ? "Descrizione valida" : "Inserire tra 100 e 1000 caratteri"}
+          </strong>
         </section>
         <button type='submit'
-          className='border-2 p-2 m-1 bg-blue-600 hover:bg-blue-700 text-white border-black'>
+          className='border-2 p-2 m-2 bg-blue-600 hover:bg-blue-700 text-white border-black'>
           Invia
         </button>
       </form>
@@ -108,3 +122,5 @@ function App() {
 }
 
 export default App
+//  ||
+//               
