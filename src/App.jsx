@@ -1,36 +1,40 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 function App() {
-
-  const [fullName, setFullName] = useState("Fabio");
+  const fullNameRef = useRef();
   const [username, setUsername] = useState("pheb731");
   const [password, setPassword] = useState("password3$");
   const [specialization, setSpecialization] = useState("Full-stack");
-  const [yearExp, setYearExp] = useState("5");
+  const yearExpRef = useRef();
   const [desc, setDesc] = useState("Ciao, sono Fabio");
+  // const resetRef = useRef();
   const letters = "abcdefghijklmnopqrstuvwxyz";
   const numbers = "0123456789";
-  const symbols = "!@#$%^&*()-_=+[]{}|;:',.<>?/`~£§";
+  const symbols = "!@#$%^&*()-_=+[]{}|;:',.<>?/°`~£§";
+  console.log("Render");
+  
 
   const submit = (e) => {
     e.preventDefault();
+    const fullNameInput = fullNameRef.current.value;
+    const yearExpInput = yearExpRef.current.value;
     if (
-      !fullName.trim() ||
+      !fullNameInput.trim() ||
       !username.trim() ||
       !password.trim() ||
       !specialization.trim() ||
-      !yearExp.trim() ||
+      !yearExpInput.trim() ||
       !desc.trim()
     ) {
       alert("Errore: Compila tutti i campi");
       return;
     } else {
       console.log(`Hai fatto il submit con:
-      - Nome completo: ${fullName};
+      - Nome completo: ${fullNameInput};
       - Username: ${username};
       - Password: ${password};
       - Specializzazione: ${specialization};
-      - Anni di esperienza: ${yearExp};
+      - Anni di esperienza: ${yearExpInput};
       - Descrizione: ${desc}`);
     }
   }
@@ -41,8 +45,7 @@ function App() {
         <section>
           <h1 className='text-center'>Nome completo</h1>
           <input type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            ref={fullNameRef}
             placeholder='Scrivi...'
             className='p-2 border m-1'
           />
@@ -93,8 +96,7 @@ function App() {
         <section>
           <h1 className='text-center'>Anni di esperienza</h1>
           <input type="number"
-            value={yearExp}
-            onChange={(e) => setYearExp(e.target.value)}
+            ref={yearExpRef}
             placeholder='Scrivi...'
             className='p-2 border m-1'
             min="0"
